@@ -1,4 +1,4 @@
-## Intel Ethernet Connection I219-V driver installation for Windows Server
+## Intel Ethernet Connection I219-V, I225-V and I226-V driver installation for Windows Server
 
 ### System requirements
 * Windows Server 2012
@@ -15,7 +15,7 @@
 * SHA1: 1F1DA97C4D9ADF41251361F3907EF94C5FB42E9F
 
 ### Modifications
-* Deleted all files except the I219-V driver files.
+* Deleted all files except the I219-V, I225-V and I226-V driver files.
 * Modified `e1d.inf` files based on server version.
 
 ### Supported operating systems by each directory
