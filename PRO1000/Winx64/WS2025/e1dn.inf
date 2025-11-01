@@ -1,6 +1,6 @@
 ;******************************************************************************
 ;**                                                                          **
-;**  Copyright 2020-2022 Intel Corporation All Rights Reserved.              **
+;**  Copyright 2020-2025 Intel Corporation All Rights Reserved.              **
 ;**                                                                          **
 ;**  The material contained or described herein and all documents related    **
 ;**  to such material ("Material") is owned by Intel Corporation or its      **
@@ -35,7 +35,7 @@ ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
 Provider    = %Intel%
 PnpLockDown = 1
 CatalogFile = e1dn.cat
-DriverVer   = 06/26/2024,20.0.2.19
+DriverVer   = 10/05/2025,20.0.3.16
 
 [Manufacturer]
 %Intel%     = Intel, NTamd64.10.0.1..22000
@@ -131,11 +131,11 @@ AddReg              = TcpSeg.reg
 AddReg              = Copper.reg
 AddReg              = Powermgmt.reg
 AddReg              = ULP.reg
+AddReg              = K1.reg
 AddReg              = EEE.reg
 AddReg              = Jumbopacket.reg
 AddReg              = ProtocolOffload.reg
 AddReg              = RTD3.reg
-AddReg              = IntelANSVlanID.reg
 AddReg              = CoInKS.reg
 AddReg              = UninstallW2.reg
 CopyFiles           = win10.CopyFiles, MessageDll.CopyFiles
@@ -173,11 +173,11 @@ AddReg              = TcpSeg.reg
 AddReg              = Copper.reg
 AddReg              = Powermgmt.reg
 AddReg              = ULP.reg
+AddReg              = K1.reg
 AddReg              = EEE.reg
 AddReg              = Jumbopacket.reg
 AddReg              = ProtocolOffload.reg
 AddReg              = RTD3.reg
-AddReg              = IntelANSVlanID.reg
 AddReg              = CoInKS.reg
 AddReg              = UninstallW2.reg
 CopyFiles           = win10.CopyFiles, MessageDll.CopyFiles
@@ -201,12 +201,14 @@ HKR, Ndi,                                               Service,                
 ; Hardwired defaults
 HKR,,                                                   *HeaderDataSplit,       0, "1"
 
+; *FlowControl
 HKR, Ndi\Params\*FlowControl,                           ParamDesc,              0, %FlowControl%
-HKR, Ndi\Params\*FlowControl,                           default,                0, "3"
+HKR, Ndi\Params\*FlowControl,                           default,                0, "4"
 HKR, Ndi\Params\*FlowControl\Enum,                      "0",                    0, %Disabled%
 HKR, Ndi\Params\*FlowControl\Enum,                      "1",                    0, %FlowControl_TxOnly%
 HKR, Ndi\Params\*FlowControl\Enum,                      "2",                    0, %FlowControl_RxOnly%
 HKR, Ndi\Params\*FlowControl\Enum,                      "3",                    0, %FlowControl_Full%
+HKR, Ndi\Params\*FlowControl\Enum,                      "4",                    0, %AutoNegotiation%
 HKR, Ndi\Params\*FlowControl,                           type,                   0, "enum"
 
 ; *TCPChecksumOffloadIPv4
@@ -318,10 +320,11 @@ HKR, PROSetNdi\NdiExt\Params\*SpeedDuplex,              ExposeLevel,            
 [JumboPacket.reg]
 HKR, Ndi\Params\*JumboPacket,                           ParamDesc,              0, %JumboPacket%
 HKR, Ndi\Params\*JumboPacket,                           default,                0, "1514"
-HKR, Ndi\Params\*JumboPacket\Enum,                      "1514",                 0, %Disabled%
-HKR, Ndi\Params\*JumboPacket\Enum,                      "4088",                 0, %Bytes4088%
-HKR, Ndi\Params\*JumboPacket\Enum,                      "9014",                 0, %Bytes9014%
-HKR, Ndi\Params\*JumboPacket,                           type,                   0, "enum"
+HKR, Ndi\Params\*JumboPacket,                           min,                    0, "1514"
+HKR, Ndi\Params\*JumboPacket,                           max,                    0, "9014"
+HKR, Ndi\Params\*JumboPacket,                           step,                   0, "1"
+HKR, Ndi\Params\*JumboPacket,                           base,                   0, "10"
+HKR, Ndi\Params\*JumboPacket,                           type,                   0, "dword"
 
 [Powermgmt.reg]
 HKR, Ndi\Params\*WakeOnPattern,                         ParamDesc,              0, %WakeOnPattern%
@@ -359,6 +362,14 @@ HKR,Ndi\Params\ULPMode,                                 Default,                
 HKR,Ndi\Params\ULPMode\Enum,                            "1",                    0, %Enabled%
 HKR,Ndi\Params\ULPMode\Enum,                            "0",                    0, %Disabled%
 
+[K1.reg]
+; K1 State
+HKR,Ndi\Params\EnableK1,                                ParamDesc,              0, %PcieK1State%
+HKR,Ndi\Params\EnableK1,                                Type,                   0, "enum"
+HKR,Ndi\Params\EnableK1,                                Default,                0, "1"
+HKR,Ndi\Params\EnableK1\Enum,                           "1",                    0, %Enabled%
+HKR,Ndi\Params\EnableK1\Enum,                           "0",                    0, %Disabled%
+
 [EEE.reg]
 HKR, Ndi\Params\*EEE,                                   ParamDesc,              0, %EEELinkAdvertisement%
 HKR, Ndi\Params\*EEE\Enum,                              "0",                    0, %EEE_Disabled%
@@ -378,9 +389,6 @@ HKR, Ndi\Params\*PMNSOffload\Enum,                      "0",                    
 HKR, Ndi\Params\*PMNSOffload\Enum,                      "1",                    0, %Enabled%
 HKR, Ndi\Params\*PMNSOffload,                           type,                   0, "enum"
 HKR, Ndi\Params\*PMNSOffload,                           default,                0, "1"
-
-[IntelANSVlanID.reg]
-HKR,,                                                   IntelANSVlanID,         0x00010000, ""
 
 [MSI.reg]
 HKR, "Interrupt Management", 0x00000010
@@ -505,8 +513,6 @@ PriorityVLANTag                 = "Packet Priority & VLAN"
 
 Enabled                         = "Enabled"
 Disabled                        = "Disabled"
-Bytes4088                       = "4088 Bytes"
-Bytes9014                       = "9014 Bytes"
 LAA                             = "Locally Administered Address"
 JumboPacket                     = "Jumbo Packet"
 WakeOnMagicPacket               = "Wake on Magic Packet"
@@ -521,6 +527,7 @@ High                            = "High"
 Medium                          = "Medium"
 Low                             = "Low"
 UltraLowPowerMode               = "Ultra Low Power Mode"
+PcieK1State                     = "PCI Express Link Power Saving"
 EEELinkAdvertisement            = "Energy Efficient Ethernet"
 EEE_Disabled                    = "Off"
 Off                             = "Off"
@@ -603,8 +610,6 @@ PriorityVLANTag                 =" ˝æ›∞¸”≈œ»º∂∫Õ VLAN"
 
 Enabled                         ="∆Ù”√"
 Disabled                        ="Ω˚”√"
-Bytes4088                       ="4088 ◊÷Ω⁄"
-Bytes9014                       ="9014 ◊÷Ω⁄"
 LAA                             ="±æµÿπ‹¿Ìµÿ÷∑"
 JumboPacket                     ="æﬁ÷° ˝æ›∞¸"
 WakeOnMagicPacket               ="ªΩ–—ƒß∞¸"
@@ -619,6 +624,7 @@ High                            ="∏ﬂ"
 Medium                          ="÷–"
 Low                             ="µÕ"
 UltraLowPowerMode               ="≥¨µÕπ¶∫ƒƒ£ Ω"
+PcieK1State                     ="PCI Express ¡¥¬∑π¶∫ƒΩ⁄ °"
 EEELinkAdvertisement            ="Ω⁄ƒ‹“‘Ã´Õ¯"
 EEE_Disabled                    ="πÿ±’"
 Off                             ="πÿ±’"
@@ -700,8 +706,6 @@ PriorityVLANTag                 ="´ •]¿u•˝∂∂ß«ªP VLAN"
 
 Enabled                         ="±“•Œ"
 Disabled                        ="∞±•Œ"
-Bytes4088                       ="4088 ¶Ï§∏≤’"
-Bytes9014                       ="9014 ¶Ï§∏≤’"
 LAA                             ="•ª¶a∫ﬁ≤z¶Ïß}"
 JumboPacket                     ="∂W§j´¨´ •]"
 WakeOnMagicPacket               ="¶¨®Ï Magic ´ •]Æ…≥ÍøÙ"
@@ -716,6 +720,7 @@ High                            ="∞™"
 Medium                          ="§§"
 Low                             ="ßC"
 UltraLowPowerMode               ="∂WßC•\Ø”º“¶°"
+PcieK1State                     ="PCI Express ≥sµ≤¨Ÿπq•\Ø‡"
 EEELinkAdvertisement            ="∏`Ø‡§A§”∫Ù∏Ù"
 EEE_Disabled                    ="√ˆ≥¨"
 Off                             ="√ˆ≥¨"
@@ -797,8 +802,6 @@ PriorityVLANTag                 ="´ •]¿u•˝∂∂ß«ªP VLAN"
 
 Enabled                         ="±“•Œ"
 Disabled                        ="∞±•Œ"
-Bytes4088                       ="4088 ¶Ï§∏≤’"
-Bytes9014                       ="9014 ¶Ï§∏≤’"
 LAA                             ="•ª¶a∫ﬁ≤z¶Ïß}"
 JumboPacket                     ="∂W§j´¨´ •]"
 WakeOnMagicPacket               ="¶¨®Ï Magic ´ •]Æ…≥ÍøÙ"
@@ -813,6 +816,7 @@ High                            ="∞™"
 Medium                          ="§§"
 Low                             ="ßC"
 UltraLowPowerMode               ="∂WßC•\Ø”º“¶°"
+PcieK1State                     ="PCI Express ≥sµ≤¨Ÿπq•\Ø‡"
 EEELinkAdvertisement            ="∏`Ø‡§A§”∫Ù∏Ù"
 EEE_Disabled                    ="√ˆ≥¨"
 Off                             ="√ˆ≥¨"
@@ -894,8 +898,6 @@ PriorityVLANTag                 ="Paketpriorit‰t und VLAN"
 
 Enabled                         ="Aktiviert"
 Disabled                        ="Deaktiviert"
-Bytes4088                       ="4088 Byte"
-Bytes9014                       ="9014 Byte"
 LAA                             ="Lokal verwaltete Adresse"
 JumboPacket                     ="Jumbo Packet"
 WakeOnMagicPacket               ="Akt. ¸ber Magic Packet"
@@ -910,6 +912,7 @@ High                            ="Hoch"
 Medium                          ="Mittel"
 Low                             ="Niedrig"
 UltraLowPowerMode               ="ULP-Modus"
+PcieK1State                     ="PCI Express-Link ñ Energieeinsparung"
 EEELinkAdvertisement            ="Energieeffizientes Ethernet"
 EEE_Disabled                    ="Aus"
 Off                             ="Aus"
@@ -991,8 +994,6 @@ PriorityVLANTag                 ="Prioridad de paquetes y VLAN"
 
 Enabled                         ="Habilitado"
 Disabled                        ="Deshabilitado"
-Bytes4088                       ="4088 bytes"
-Bytes9014                       ="9014 bytes"
 LAA                             ="DirecciÛn administrada localmente"
 JumboPacket                     ="Paquete jumbo"
 WakeOnMagicPacket               ="Activar en Magic Packet"
@@ -1007,6 +1008,7 @@ High                            ="Alto"
 Medium                          ="Medio"
 Low                             ="Bajo"
 UltraLowPowerMode               ="Modo de EnergÌa ultrabaja"
+PcieK1State                     ="Ahorro de energÌa de enlace PCI Express"
 EEELinkAdvertisement            ="Ethernet con uso eficiente de energÌa"
 EEE_Disabled                    ="Desactivado"
 Off                             ="Desactivado"
@@ -1088,8 +1090,6 @@ PriorityVLANTag                 ="PrioritÈ des paquets et VLAN"
 
 Enabled                         ="ActivÈ(e)"
 Disabled                        ="DÈsactivÈ(e)"
-Bytes4088                       ="4088 octets"
-Bytes9014                       ="9014 octets"
 LAA                             ="Adresse administrÈe localement"
 JumboPacket                     ="Paquets Ètendus"
 WakeOnMagicPacket               ="Wake on Magic Packet"
@@ -1104,6 +1104,7 @@ High                            ="Haut"
 Medium                          ="Moyen"
 Low                             ="Faible"
 UltraLowPowerMode               ="Mode ultra basse consommation"
+PcieK1State                     ="…conomie d'Ènergie de liaison PCI Express"
 EEELinkAdvertisement            ="Ethernet Èconome en Ènergie (EEE)"
 EEE_Disabled                    ="DÈsactivÈ(e)"
 Off                             ="DÈsactivÈ(e)"
@@ -1185,8 +1186,6 @@ PriorityVLANTag                 ="Priorit‡ pacchetti e VLAN"
 
 Enabled                         ="Attivato"
 Disabled                        ="Disattivato"
-Bytes4088                       ="4088 byte"
-Bytes9014                       ="9014 byte"
 LAA                             ="Indirizzo amministrato localmente"
 JumboPacket                     ="Pacchetto Jumbo"
 WakeOnMagicPacket               ="Attiva su pacchetto Magic"
@@ -1201,6 +1200,7 @@ High                            ="Alto"
 Medium                          ="Medio"
 Low                             ="Basso"
 UltraLowPowerMode               ="Usa modalit‡ Ultra Low Power"
+PcieK1State                     ="Risparmio energetico del collegamento PCI Express"
 EEELinkAdvertisement            ="Ethernet a basso consumo energetico"
 EEE_Disabled                    ="Disattivato"
 Off                             ="Disattivato"
@@ -1282,8 +1282,6 @@ PriorityVLANTag                 ="ÉpÉPÉbÉgóDêÊìxÇ∆ VLAN"
 
 Enabled                         ="óLå¯"
 Disabled                        ="ñ≥å¯"
-Bytes4088                       ="4088 ÉoÉCÉg"
-Bytes9014                       ="9014 ÉoÉCÉg"
 LAA                             ="ÉçÅ[ÉJÉãä«óùÇ≥ÇÍÇÈÉAÉhÉåÉX"
 JumboPacket                     ="ÉWÉÉÉìÉ{ÉpÉPÉbÉg"
 WakeOnMagicPacket               ="Wake On Magic Packet"
@@ -1298,6 +1296,7 @@ High                            ="çÇ"
 Medium                          ="íÜ"
 Low                             ="í·"
 UltraLowPowerMode               ="í¥í·è¡îÔìdóÕÉÇÅ[Éh"
+PcieK1State                     ="PCI Express ÉäÉìÉNÇÃè»ìdóÕ"
 EEELinkAdvertisement            ="è»ìdóÕÉCÅ[ÉTÉlÉbÉg"
 EEE_Disabled                    ="ÉIÉt"
 Off                             ="ÉIÉt"
@@ -1379,8 +1378,6 @@ PriorityVLANTag                 ="∆–≈∂ øÏº±º¯¿ß π◊ VLAN"
 
 Enabled                         ="»∞º∫»≠µ "
 Disabled                        ="∫Ò»∞º∫»≠µ "
-Bytes4088                       ="4088πŸ¿Ã∆Æ"
-Bytes9014                       ="9014πŸ¿Ã∆Æ"
 LAA                             ="∑Œƒ√ ∞¸∏Æ ¡÷º“"
 JumboPacket                     ="¡°∫∏ ∆–≈∂"
 WakeOnMagicPacket               ="Wake on Magic Packet"
@@ -1395,6 +1392,7 @@ High                            ="≥Ù¿Ω"
 Medium                          ="¡ﬂ∞£"
 Low                             ="≥∑¿Ω"
 UltraLowPowerMode               ="√ ¿˙¿¸∑¬ ∏µÂ"
+PcieK1State                     ="PCI Express ∏µ≈© ¿˝¿¸ ∏µÂ"
 EEELinkAdvertisement            ="ø°≥ ¡ˆ »ø¿≤¿˚¿Œ ¿Ã¥ı≥›"
 EEE_Disabled                    ="ø¿«¡"
 Off                             ="ø¿«¡"
@@ -1476,8 +1474,6 @@ PriorityVLANTag                 ="Prioridade de pacotes e VLAN"
 
 Enabled                         ="Habilitado"
 Disabled                        ="Desabilitado"
-Bytes4088                       ="4088 Bytes"
-Bytes9014                       ="9014 Bytes"
 LAA                             ="EndereÁo administrado localmente (LAA)"
 JumboPacket                     ="Pacote grande"
 WakeOnMagicPacket               ="Ativar com Magic Packet"
@@ -1492,6 +1488,7 @@ High                            ="Alto"
 Medium                          ="MÈdio"
 Low                             ="Baixo"
 UltraLowPowerMode               ="Modo Ultra Low Power"
+PcieK1State                     ="Economia de energia do link PCI Express"
 EEELinkAdvertisement            ="Ethernet com uso eficiente de energia"
 EEE_Disabled                    ="Desligado"
 Off                             ="Desligado"

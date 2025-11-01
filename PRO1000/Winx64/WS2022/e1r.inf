@@ -39,7 +39,7 @@ Class       = Net
 ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
 Provider    = %Intel%
 CatalogFile = e1r.cat
-DriverVer = 11/15/2024,14.0.5.0
+DriverVer = 04/08/2025,14.0.13.0
 PnpLockdown = 1
 
 [Manufacturer]
@@ -227,13 +227,12 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnPort.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = ReduceSpeedOnPowerDown.reg
@@ -249,7 +248,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E150EPM.Server2022.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -260,14 +259,12 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
-AddReg             = SRIOV.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = EEE.reg
@@ -286,7 +283,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1521.Server2022.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -297,14 +294,12 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
-DelReg             = Sriov.DelReg
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = EEE.reg
@@ -334,13 +329,11 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
-AddReg             = SRIOV.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = DMACoalescing.reg
@@ -357,7 +350,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1522.Server2022.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -368,13 +361,11 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
-DelReg             = Sriov.DelReg
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = DMACoalescing.reg
@@ -402,14 +393,12 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnPort.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
-AddReg             = SRIOV.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = EEE.reg
@@ -428,7 +417,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1521PM.Server2022.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -439,13 +428,11 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnPort.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
-AddReg             = SRIOV.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = DMACoalescing.reg
@@ -462,7 +449,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1522PM.Server2022.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -473,14 +460,12 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
-AddReg             = SRIOV.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = DMACoalescing.reg
@@ -497,7 +482,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1524.Server2022.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -507,7 +492,6 @@ AddReg             = MSIX10.reg
 Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
@@ -534,7 +518,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1533.Server2022.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX5.reg
 
 ;-------------------------------------------------------------------------------
@@ -544,7 +528,6 @@ AddReg             = MSIX5.reg
 Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
@@ -568,7 +551,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1536.Server2022.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX5.reg
 
 ;-------------------------------------------------------------------------------
@@ -578,7 +561,6 @@ AddReg             = MSIX5.reg
 Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
@@ -603,7 +585,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1538.Server2022.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX5.reg
 
 ;===============================================================================
@@ -623,13 +605,12 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnPort.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = ReduceSpeedOnPowerDown.reg
@@ -645,7 +626,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E150EPM.Server2025.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -656,14 +637,12 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
-AddReg             = SRIOV.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = EEE.reg
@@ -682,7 +661,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1521.Server2025.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -693,14 +672,12 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
-DelReg             = Sriov.DelReg
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = EEE.reg
@@ -730,13 +707,11 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
-AddReg             = SRIOV.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = DMACoalescing.reg
@@ -753,7 +728,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1522.Server2025.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -764,13 +739,11 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
-DelReg             = Sriov.DelReg
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = DMACoalescing.reg
@@ -798,14 +771,12 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnPort.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
-AddReg             = SRIOV.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = EEE.reg
@@ -824,7 +795,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1521PM.Server2025.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -835,13 +806,11 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnPort.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
-AddReg             = SRIOV.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = DMACoalescing.reg
@@ -858,7 +827,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1522PM.Server2025.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -869,14 +838,12 @@ Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 Port1FunctionNumber = 0
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
 AddReg             = DCA.reg
-AddReg             = LLI.reg, VMQ.reg
-AddReg             = SRIOV.reg
+AddReg             = LLI.reg
 AddReg             = RSS.reg, RSS8Q.reg, RSSAdvanced.reg
 AddReg             = NDISVlanId.reg
 AddReg             = DMACoalescing.reg
@@ -893,7 +860,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1524.Server2025.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX10.reg
 
 ;-------------------------------------------------------------------------------
@@ -903,7 +870,6 @@ AddReg             = MSIX10.reg
 Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
@@ -930,7 +896,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1533.Server2025.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX5.reg
 
 ;-------------------------------------------------------------------------------
@@ -940,7 +906,6 @@ AddReg             = MSIX5.reg
 Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Powermgmt.reg, WakeOnSlot.reg, WakeOnLink.reg
@@ -964,7 +929,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1536.Server2025.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX5.reg
 
 ;-------------------------------------------------------------------------------
@@ -974,7 +939,6 @@ AddReg             = MSIX5.reg
 Characteristics    = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
 BusType            = 5    ; PCI
 DelReg             = Advanced.DelReg
-DMA_DELREG
 AddReg             = e1r.reg, TcpSeg.reg, JumboPacket.reg
 AddReg             = EnableWakeOnManagmentOnTCO.reg
 AddReg             = Copper.reg, Copper1000.reg
@@ -999,7 +963,7 @@ AddService = e1rexpress, 2, win10.Service, win10.EventLog
 
 [E1538.Server2025.HW]
 Include            = pci.inf
-Needs              = PciSriovSupported.HW, PciIoSpaceNotRequired.HW
+Needs              = PciIoSpaceNotRequired.HW
 AddReg             = MSIX5.reg
 
 ;-------------------------------------------------------------------------------
@@ -1298,37 +1262,6 @@ HKR, Ndi\Params\WakeOnLink\Enum,                        "2",                    
 HKR, Ndi\Params\WakeOnLink,                             type,                   0, "enum"
 HKR, Ndi\Params\WakeOnLink,                             default,                0, "0"
 
-[VMQ.reg]
-; *VMQ
-HKR, Ndi\Params\*VMQ,                                   ParamDesc,              0, %VMQ%
-HKR, Ndi\Params\*VMQ,                                   default,                0, "1"
-HKR, Ndi\Params\*VMQ,                                   type,                   0, "enum"
-HKR, Ndi\Params\*VMQ\Enum,                              "0",                    0, %Disabled%
-HKR, Ndi\Params\*VMQ\Enum,                              "1",                    0, %Enabled%
-HKR,,                                                   VMQSupported,           0, "1"
-
-[SRIOV.reg]
-; *SRIOV
-HKR, Ndi\Params\*SRIOV,                                 ParamDesc,              0, %Sriov%
-HKR, Ndi\Params\*SRIOV,                                 default,                0, "1"
-HKR, Ndi\Params\*SRIOV,                                 type,                   0, "enum"
-HKR, Ndi\Params\*SRIOV\Enum,                            "0",                    0, %Disabled%
-HKR, Ndi\Params\*SRIOV\Enum,                            "1",                    0, %Enabled%
-
-; SRIOV Default switch configuration
-HKR, NicSwitches\0,     *Flags,                                                 0x00010001,       0x0
-HKR, NicSwitches\0,     *SwitchType,                                            0x00010001,       1
-HKR, NicSwitches\0,     *SwitchId,                                              0x00010001,       0
-HKR, NicSwitches\0,     *SwitchName,                                            0,                "Default Switch"
-HKR, NicSwitches\0,     *NumVFs,                                                0x00010001,       6
-HKR, NicSwitches\0,     *NumVPorts,                                             0x00010001,       8
-HKR, NicSwitches\0,     *NumQueuePairsForDefaultVPort,                          0x00010001,       1
-HKR, NicSwitches\0,     *NumQueuePairsForNonDefaultVPorts,                      0x00010001,       7
-
-[Sriov.DelReg]
-HKR,, *Sriov
-HKR,, *SriovPreferred
-
 [RSS.reg]
 ; *RSS
 HKR, Ndi\Params\*RSS,                                   ParamDesc,              0, %RSS%
@@ -1565,6 +1498,10 @@ HKR, Ndi\Params
 HKR, PROSetNdi\Params
 HKR, PROSetNdi\NdiExt
 HKR,, LinkNegotiationProcess
+HKR,, *Sriov
+HKR,, *SriovPreferred
+HKR,, *Vmq
+HKR,, VMQSupported
 
 [WakeOnPort.DelReg]
 HKR,, WakeOnPort
@@ -1603,8 +1540,6 @@ PriorityVlanEnabled2            = "Packet Priority & VLAN Enabled"
 TransmitBuffers                 = "Transmit Buffers"
 ReceiveBuffers                  = "Receive Buffers"
 PriorityVLANTag2                = "Packet Priority & VLAN"
-VMQ                             = "Virtual Machine Queues"
-SRIOV                           = "SR-IOV"
 RSS                             = "Receive Side Scaling"
 NumRssQueues2                   = "Maximum Number of RSS Queues"
 RSSProfile                      = "RSS load balancing profile"
@@ -1766,8 +1701,6 @@ PriorityVlanEnabled2            ="“—∆Ù”√ ˝æ›∞¸”≈œ»º∂∫Õ VLAN"
 TransmitBuffers                 ="¥´ ‰ª∫≥Â«¯"
 ReceiveBuffers                  ="Ω” ’ª∫≥Â«¯"
 PriorityVLANTag2                =" ˝æ›∞¸”≈œ»º∂∫Õ VLAN"
-VMQ                             ="–Èƒ‚ª˙∂”¡–"
-SRIOV                           ="SR-IOV"
 RSS                             ="Ω” ’∑Ωµ˜’˚"
 NumRssQueues2                   ="RSS ∂”¡–µƒ◊Ó¥Û ˝ƒø"
 RSSProfile                      ="RSS ∏∫‘ÿ∆Ω∫‚≈‰÷√ Ω"
@@ -1929,8 +1862,6 @@ PriorityVlanEnabled2            ="´ •]¿u•˝∂∂ß«ªP VLAN §w±“•Œ"
 TransmitBuffers                 ="∂«øÈΩwΩƒ∞œ"
 ReceiveBuffers                  ="±µ¶¨ΩwΩƒ∞œ"
 PriorityVLANTag2                ="´ •]¿u•˝∂∂ß«ªP VLAN"
-VMQ                             ="µÍ¿¿æ˜æπ¶Ó¶C"
-SRIOV                           ="SR-IOV"
 RSS                             ="±µ¶¨∫›Ω’æ„"
 NumRssQueues2                   ="±µ¶¨∫›Ω’æ„¶Ó¶C™∫≥Ã§jº∆•ÿ"
 RSSProfile                      ="±µ¶¨∫›Ω’æ„∏¸∂q•≠ø≈≥]©w¿…"
@@ -2092,8 +2023,6 @@ PriorityVlanEnabled2            ="Paketpriorit‰t und VLAN aktiviert"
 TransmitBuffers                 ="‹bertragungspuffer"
 ReceiveBuffers                  ="Empfangspuffer"
 PriorityVLANTag2                ="Paketpriorit‰t und VLAN"
-VMQ                             ="Virtuelle Maschinen-Warteschlangen"
-SRIOV                           ="SR-IOV"
 RSS                             ="RSS (Empfangsseitige Skalierung)"
 NumRssQueues2                   ="Max. Anzahl RSS-Warteschlangen"
 RSSProfile                      ="RSS-Load-Balancing-Profil"
@@ -2255,8 +2184,6 @@ PriorityVlanEnabled2            ="Prioridad de paquetes y VLAN habilitadas"
 TransmitBuffers                 ="B˙feres de transmisiÛn"
 ReceiveBuffers                  ="B˙feres de recepciÛn"
 PriorityVLANTag2                ="Prioridad de paquetes y VLAN"
-VMQ                             ="Colas de m·quina virtual"
-SRIOV                           ="SR-IOV"
 RSS                             ="Receive Side Scaling"
 NumRssQueues2                   ="N˙mero m·ximo de colas de RSS"
 RSSProfile                      ="Perfil de distribuciÛn de carga de RSS"
@@ -2418,8 +2345,6 @@ PriorityVlanEnabled2            ="PrioritÈ des paquets et VLAN activÈs"
 TransmitBuffers                 ="Tampons d'Èmission"
 ReceiveBuffers                  ="Tampons de rÈception"
 PriorityVLANTag2                ="PrioritÈ des paquets et VLAN"
-VMQ                             ="Files d'attente d'ordinateurs virtuels"
-SRIOV                           ="SR-IOV"
 RSS                             ="Partage du trafic entrant (RSS)"
 NumRssQueues2                   ="Nombre maximum de files d'attente RSS"
 RSSProfile                      ="Profil d'Èquilibrage de la charge RSS"
@@ -2581,8 +2506,6 @@ PriorityVlanEnabled2            ="Priorit‡ pacchetti e VLAN attivate"
 TransmitBuffers                 ="Trasmetti buffer"
 ReceiveBuffers                  ="Ricevi buffer"
 PriorityVLANTag2                ="Priorit‡ pacchetti e VLAN"
-VMQ                             ="Code macchine virtuali"
-SRIOV                           ="SR-IOV"
 RSS                             ="Receive Side Scaling"
 NumRssQueues2                   ="Numero massimo di code RSS"
 RSSProfile                      ="Profilo di bilanciamento del carico RSS"
@@ -2596,7 +2519,7 @@ NumaNodeId                      ="Nodo NUMA preferito"
 MaxRssProcessors                ="Numero massimo di processori RSS"
 On                              ="Attivato"
 Off                             ="Disattivato"
-Enabled                         ="Attivata"
+Enabled                         ="Attivato"
 Disabled                        ="Disattivata"
 LAA                             ="Indirizzo amministrato localmente"
 JumboPacket                     ="Pacchetti Jumbo"
@@ -2744,8 +2667,6 @@ PriorityVlanEnabled2            ="ÉpÉPÉbÉgóDêÊìxÇ∆ VLAN óLå¯"
 TransmitBuffers                 ="ëóêMÉoÉbÉtÉ@Å["
 ReceiveBuffers                  ="éÛêMÉoÉbÉtÉ@Å["
 PriorityVLANTag2                ="ÉpÉPÉbÉgóDêÊìxÇ∆ VLAN"
-VMQ                             ="âºëzÉ}ÉVÉìÉLÉÖÅ["
-SRIOV                           ="SR-IOV"
 RSS                             ="éÛêMë§ÉXÉPÅ[ÉäÉìÉO"
 NumRssQueues2                   ="RSS ÉLÉÖÅ[ÇÃç≈ëÂêî"
 RSSProfile                      ="RSS ÉçÅ[ÉhÅEÉoÉâÉìÉVÉìÉOÅEÉvÉçÉtÉ@ÉCÉã"
@@ -2907,8 +2828,6 @@ PriorityVlanEnabled2            ="∆–≈∂ øÏº±º¯¿ß π◊ VLAN »∞º∫»≠µ "
 TransmitBuffers                 ="¿¸º€ πˆ∆€"
 ReceiveBuffers                  ="ºˆΩ≈ πˆ∆€"
 PriorityVLANTag2                ="∆–≈∂ øÏº±º¯¿ß π◊ VLAN"
-VMQ                             ="∞°ªÛ Ω√Ω∫≈€ ¥Î±‚ø≠"
-SRIOV                           ="SR-IOV"
 RSS                             ="ºˆΩ≈√¯ πË¿≤"
 NumRssQueues2                   ="√÷¥Î RSS ¥Î±‚ø≠ ºˆ"
 RSSProfile                      ="RSS ∑ŒµÂ πÎ∑±ΩÃ «¡∑Œ∆ƒ¿œ"
@@ -3070,8 +2989,6 @@ PriorityVlanEnabled2            ="Prioridade de pacotes e VLAN habilitadas"
 TransmitBuffers                 ="Buffers de transmiss„o"
 ReceiveBuffers                  ="Buffers de recepÁ„o"
 PriorityVLANTag2                ="Prioridade de pacotes e VLAN"
-VMQ                             ="Filas de m·quina virtual"
-SRIOV                           ="SR-IOV"
 RSS                             ="Escala de recepÁ„o"
 NumRssQueues2                   ="N∫ m·x. de filas de RSS"
 RSSProfile                      ="Perfil de equilÌbrio de carga de RSS"
@@ -3233,8 +3150,6 @@ PriorityVlanEnabled2            ="´ •]¿u•˝∂∂ß«ªP VLAN §w±“•Œ"
 TransmitBuffers                 ="∂«øÈΩwΩƒ∞œ"
 ReceiveBuffers                  ="±µ¶¨ΩwΩƒ∞œ"
 PriorityVLANTag2                ="´ •]¿u•˝∂∂ß«ªP VLAN"
-VMQ                             ="µÍ¿¿æ˜æπ¶Ó¶C"
-SRIOV                           ="SR-IOV"
 RSS                             ="±µ¶¨∫›Ω’æ„"
 NumRssQueues2                   ="±µ¶¨∫›Ω’æ„¶Ó¶C™∫≥Ã§jº∆•ÿ"
 RSSProfile                      ="±µ¶¨∫›Ω’æ„∏¸∂q•≠ø≈≥]©w¿…"
